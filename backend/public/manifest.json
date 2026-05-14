@@ -1,0 +1,18 @@
+{
+    "name": "Admin Lost & Found Campus",
+    "short_name": "Admin Kampus",
+    "description": "Platform administrasi dan moderasi untuk laporan barang hilang dan ditemukan di kampus.",
+    "start_url": "/admin",
+    "scope": "/",
+    "display": "standalone",
+    "background_color": "#f6f7f9",
+    "theme_color": "#047857",
+    "icons": [
+        {
+            "src": "/pwa/icon.svg",
+            "sizes": "any",
+            "type": "image/svg+xml",
+            "purpose": "any maskable"
+        }
+    ]
+}
