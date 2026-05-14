@@ -35,9 +35,11 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     libcurl4-openssl-dev \
+    libpq-dev \
     && docker-php-ext-install \
         pdo \
         pdo_mysql \
+        pdo_pgsql \
         mbstring \
         exif \
         pcntl \
