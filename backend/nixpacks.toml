@@ -1,20 +1,35 @@
+providers = ["php", "composer"]
+
 [phases.setup]
-nixPkgs = [
-  "php82",
-  "php82Extensions.pdo_mysql",
-  "php82Extensions.mbstring",
-  "php82Extensions.xml",
-  "php82Extensions.curl",
-  "php82Extensions.zip",
-  "php82Extensions.gd",
-  "php82Extensions.tokenizer",
-  "php82Extensions.fileinfo",
-  "php82Extensions.openssl",
+aptPkgs = [
+  "php8.2",
+  "php8.2-cli",
+  "php8.2-common",
+  "php8.2-mbstring",
+  "php8.2-xml",
+  "php8.2-curl",
+  "php8.2-zip",
+  "php8.2-gd",
+  "php8.2-mysql",
+  "php8.2-tokenizer",
+  "php8.2-fileinfo",
+  "php8.2-openssl",
+  "php8.2-bcmath",
+  "php8.2-intl",
   "composer"
 ]
 
 [phases.install]
-cmds = ["composer install --no-dev --optimize-autoloader"]
+cmds = [
+  "composer install --no-dev --optimize-autoloader --no-interaction"
+]
+
+[phases.build]
+cmds = [
+  "php artisan config:cache",
+  "php artisan route:cache",
+  "php artisan view:cache"
+]
 
 [start]
-cmd = "php artisan migrate --force && php artisan storage:link && php artisan optimize && php artisan serve --host 0.0.0.0 --port ${PORT:-8000}"
+cmd = "php artisan migrate --force && php artisan storage:link --force && php artisan serve --host 0.0.0.0 --port ${PORT:-8000}"
