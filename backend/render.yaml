@@ -1,0 +1,42 @@
+services:
+  - type: web
+    name: lost-found-campus-api
+    runtime: docker
+    plan: free
+    branch: main
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/v1/categories
+    envVars:
+      - key: APP_NAME
+        value: "Lost Found Campus"
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: "false"
+      - key: APP_TIMEZONE
+        value: Asia/Jakarta
+      - key: APP_LOCALE
+        value: id
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: LOG_LEVEL
+        value: warning
+      - key: DB_CONNECTION
+        value: mysql
+      - key: SESSION_DRIVER
+        value: file
+      - key: FILESYSTEM_DISK
+        value: public
+      - key: QUEUE_CONNECTION
+        value: sync
+      - key: CACHE_STORE
+        value: file
+      # ⬇️ Set these manually in Render dashboard:
+      # APP_KEY  → generate with: php artisan key:generate --show
+      # APP_URL  → your Render URL e.g. https://lost-found-campus-api.onrender.com
+      # DB_HOST  → from db4free.net: db4free.net
+      # DB_PORT  → 3306
+      # DB_DATABASE → your db4free database name
+      # DB_USERNAME → your db4free username
+      # DB_PASSWORD → your db4free password
