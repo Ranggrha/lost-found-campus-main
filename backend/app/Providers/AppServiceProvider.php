@@ -29,5 +29,9 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(Report::class, ReportPolicy::class);
         Gate::policy(Claim::class, ClaimPolicy::class);
         Gate::policy(Notification::class, NotificationPolicy::class);
+
+        if (env('APP_ENV') === 'production') {
+            \Illuminate\Support\Facades\URL::forceScheme('https');
+        }
     }
 }
